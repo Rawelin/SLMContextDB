@@ -55,7 +55,7 @@ warning 6002: The table/view 'SLM.dbo.Users' does not have a primary key defined
           <Property Name="AccountActivated" Type="Byte" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="SLMEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.Users" />
         </EntityContainer>
       </Schema>
@@ -63,7 +63,7 @@ warning 6002: The table/view 'SLM.dbo.Users' does not have a primary key defined
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SLMModelStoreContainer" CdmEntityContainer="SLMEntities">
+        <EntityContainerMapping StorageEntityContainer="SLMModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SLMModel.Users">
               <MappingFragment StoreEntitySet="Users">

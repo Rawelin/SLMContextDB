@@ -133,23 +133,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SLMDB.Context.cs">
+    <Compile Include="SLM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SLMDB.Context.tt</DependentUpon>
+      <DependentUpon>SLM.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SLMDB.cs">
+    <Compile Include="SLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SLMDB.tt</DependentUpon>
+      <DependentUpon>SLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="SLMDB.Designer.cs">
+    <Compile Include="SLM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SLMDB.edmx</DependentUpon>
+      <DependentUpon>SLM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>SLMDB.tt</DependentUpon>
+      <DependentUpon>SLM.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -174,15 +174,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="SLMDB.Context.tt">
+    <Content Include="SLM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SLMDB.Context.cs</LastGenOutput>
-      <DependentUpon>SLMDB.edmx</DependentUpon>
+      <DependentUpon>SLM.edmx</DependentUpon>
+      <LastGenOutput>SLM.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SLMDB.tt">
+    <Content Include="SLM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SLMDB.edmx</DependentUpon>
-      <LastGenOutput>SLMDB.cs</LastGenOutput>
+      <DependentUpon>SLM.edmx</DependentUpon>
+      <LastGenOutput>SLM.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -198,12 +198,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <EntityDeploy Include="SLMDB.edmx">
+    <EntityDeploy Include="SLM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SLMDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>SLM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="SLMDB.edmx.diagram">
-      <DependentUpon>SLMDB.edmx</DependentUpon>
+    <Content Include="SLM.edmx.diagram">
+      <DependentUpon>SLM.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -13,10 +13,10 @@ namespace SLMContextDB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SLMEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public SLMEntities()
-            : base("name=SLMEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

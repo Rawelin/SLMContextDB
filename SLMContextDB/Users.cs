@@ -16,6 +16,7 @@ namespace SLMContextDB
     {
         public int IdUser { get; set; }
         public string eMail { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }

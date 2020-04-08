@@ -5,14 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SLMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SLM.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ErrorTableApp">
+          <Key>
+            <PropertyRef Name="IdAppErr" />
+          </Key>
+          <Property Name="IdAppErr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Service" Type="varchar" MaxLength="100" />
+          <Property Name="Class" Type="varchar" MaxLength="100" />
+          <Property Name="Method" Type="varchar" MaxLength="100" />
+          <Property Name="InnerException" Type="varchar(max)" />
+          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="Source" Type="varchar(max)" />
+          <Property Name="StackTrace" Type="varchar(max)" />
+          <Property Name="TargetSite" Type="varchar(max)" />
+          <Property Name="UserLogin" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
-            <PropertyRef Name="eMail" />
-            <PropertyRef Name="AccountActivated" />
-            <PropertyRef Name="Active" />
           </Key>
           <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="eMail" Type="varchar" MaxLength="200" Nullable="false" />
@@ -24,32 +35,36 @@ warning 6002: The table/view 'SLM.dbo.Users' does not have a primary key defined
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SLMModelStoreContainer">
-          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Users].[IdUser] AS [IdUser], 
-    [Users].[eMail] AS [eMail], 
-    [Users].[Password] AS [Password], 
-    [Users].[FirstName] AS [FirstName], 
-    [Users].[LastName] AS [LastName], 
-    [Users].[LastLoginDate] AS [LastLoginDate], 
-    [Users].[AccountActivated] AS [AccountActivated], 
-    [Users].[Active] AS [Active]
-    FROM [dbo].[Users] AS [Users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="ErrorTableApp" EntityType="Self.ErrorTableApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SLMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ErrorTableApp" EntityType="SLMModel.ErrorTableApp" />
           <EntitySet Name="Users" EntityType="SLMModel.Users" />
         </EntityContainer>
+        <EntityType Name="ErrorTableApp">
+          <Key>
+            <PropertyRef Name="IdAppErr" />
+          </Key>
+          <Property Name="IdAppErr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Service" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Method" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TargetSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserLogin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
-            <PropertyRef Name="eMail" />
-            <PropertyRef Name="AccountActivated" />
-            <PropertyRef Name="Active" />
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="eMail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -66,6 +81,23 @@ warning 6002: The table/view 'SLM.dbo.Users' does not have a primary key defined
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SLMModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ErrorTableApp">
+            <EntityTypeMapping TypeName="SLMModel.ErrorTableApp">
+              <MappingFragment StoreEntitySet="ErrorTableApp">
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="TargetSite" ColumnName="TargetSite" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IdAppErr" ColumnName="IdAppErr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SLMModel.Users">
               <MappingFragment StoreEntitySet="Users">

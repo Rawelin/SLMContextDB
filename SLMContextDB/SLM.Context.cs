@@ -25,6 +25,7 @@ namespace SLMContextDB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ErrorTableApp> ErrorTableApp { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

@@ -27,5 +27,14 @@ namespace SLMContextDB
     
         public virtual DbSet<ErrorTableApp> ErrorTableApp { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<dictCountries> dictCountries { get; set; }
+        public virtual DbSet<dictFormations> dictFormations { get; set; }
+        public virtual DbSet<dictPersons> dictPersons { get; set; }
+        public virtual DbSet<dictPositions> dictPositions { get; set; }
+        public virtual DbSet<dictTeams> dictTeams { get; set; }
+        public virtual DbSet<dictTeamsPlayers> dictTeamsPlayers { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Teams> Teams { get; set; }
+        public virtual DbSet<TeamsPlayer> TeamsPlayer { get; set; }
     }
 }

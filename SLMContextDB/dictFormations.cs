@@ -12,23 +12,21 @@ namespace SLMContextDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class dictFormations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public dictFormations()
         {
+            this.dictTeams = new HashSet<dictTeams>();
             this.Teams = new HashSet<Teams>();
         }
     
-        public int IdUser { get; set; }
-        public string eMail { get; set; }
-        public byte[] Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public Nullable<System.DateTime> LastLoginDate { get; set; }
-        public byte AccountActivated { get; set; }
+        public int IdDictFormations { get; set; }
+        public string Description { get; set; }
         public byte Active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dictTeams> dictTeams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teams> Teams { get; set; }
     }

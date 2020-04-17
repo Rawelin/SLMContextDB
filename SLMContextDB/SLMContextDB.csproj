@@ -131,6 +131,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeDBController.cs" />
+    <Compile Include="dictCountries.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictFormations.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictPersons.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictPositions.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictTeams.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dictTeamsPlayers.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="ErrorTableApp.cs">
       <DependentUpon>SLM.tt</DependentUpon>
     </Compile>
@@ -152,6 +170,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SLM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teams.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamsPlayer.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>SLM.tt</DependentUpon>

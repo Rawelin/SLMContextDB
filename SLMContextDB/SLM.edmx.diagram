@@ -7,6 +7,30 @@
       <Diagram DiagramId="c85b6f7f2bf94cf39a03f7ce6662029b" Name="Diagram1">
         <EntityTypeShape EntityType="SLMModel.ErrorTableApp" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="SLMModel.Users" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SLMModel.dictCountries" Width="1.5" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="SLMModel.dictFormations" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="SLMModel.dictPersons" Width="1.5" PointX="3" PointY="14.25" />
+        <EntityTypeShape EntityType="SLMModel.dictPositions" Width="1.5" PointX="3" PointY="16.875" />
+        <EntityTypeShape EntityType="SLMModel.dictTeams" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="SLMModel.dictTeamsPlayers" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="SLMModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SLMModel.Teams" Width="1.5" PointX="6" PointY="5.375" />
+        <EntityTypeShape EntityType="SLMModel.TeamsPlayer" Width="1.5" PointX="7.5" PointY="9.5" />
+        <AssociationConnector Association="SLMModel.FK_dictTeams_dictCountries" />
+        <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictCountries" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictCountries" />
+        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictCountries" />
+        <AssociationConnector Association="SLMModel.FK_dictTeams_dictFormations" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictFormations" />
+        <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictPersons" />
+        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictPersons" />
+        <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictPositions" />
+        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictPositions" />
+        <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictTeams" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictTeams" />
+        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeams" />
+        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" />
+        <AssociationConnector Association="SLMModel.FK_Teams_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

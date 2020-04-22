@@ -18,8 +18,8 @@ namespace SLMContextDB
         public dictCountries()
         {
             this.dictTeams = new HashSet<dictTeams>();
-            this.dictTeamsPlayers = new HashSet<dictTeamsPlayers>();
             this.Teams = new HashSet<Teams>();
+            this.dictTeamsPlayers = new HashSet<dictTeamsPlayers>();
             this.TeamsPlayer = new HashSet<TeamsPlayer>();
         }
     
@@ -32,9 +32,9 @@ namespace SLMContextDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dictTeams> dictTeams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dictTeamsPlayers> dictTeamsPlayers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teams> Teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dictTeamsPlayers> dictTeamsPlayers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamsPlayer> TeamsPlayer { get; set; }
     }

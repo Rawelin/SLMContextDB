@@ -24,7 +24,7 @@ namespace SLMContextDB
         public int IdDictTeams { get; set; }
         public int IdDictCountries { get; set; }
         public int IdDictPositions { get; set; }
-        public int IdDictPositionsActual { get; set; }
+        public int Lp { get; set; }
         public int IdDictPersons { get; set; }
         public System.DateTime BirthDate { get; set; }
         public string FirstName { get; set; }
@@ -57,7 +57,6 @@ namespace SLMContextDB
         public virtual dictCountries dictCountries { get; set; }
         public virtual dictPersons dictPersons { get; set; }
         public virtual dictPositions dictPositions { get; set; }
-        public virtual dictPositions dictPositions1 { get; set; }
         public virtual dictTeams dictTeams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamsPlayer> TeamsPlayer { get; set; }

@@ -19,7 +19,7 @@ namespace SLMContextDB
         public int IdDictTeams { get; set; }
         public int IdDictCountries { get; set; }
         public int IdDictPositions { get; set; }
-        public int IdDictPositionsActual { get; set; }
+        public int Lp { get; set; }
         public int IdDictPersons { get; set; }
         public System.DateTime BirthDate { get; set; }
         public string FirstName { get; set; }
@@ -52,7 +52,6 @@ namespace SLMContextDB
         public virtual dictCountries dictCountries { get; set; }
         public virtual dictPersons dictPersons { get; set; }
         public virtual dictPositions dictPositions { get; set; }
-        public virtual dictPositions dictPositions1 { get; set; }
         public virtual dictTeams dictTeams { get; set; }
         public virtual dictTeamsPlayers dictTeamsPlayers { get; set; }
     }

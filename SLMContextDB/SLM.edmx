@@ -59,7 +59,7 @@
           <Property Name="IdDictTeams" Type="int" Nullable="false" />
           <Property Name="IdDictCountries" Type="int" Nullable="false" />
           <Property Name="IdDictPositions" Type="int" Nullable="false" />
-          <Property Name="IdDictPositionsActual" Type="int" Nullable="false" />
+          <Property Name="Lp" Type="int" Nullable="false" />
           <Property Name="IdDictPersons" Type="int" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -137,7 +137,7 @@
           <Property Name="IdDictTeams" Type="int" Nullable="false" />
           <Property Name="IdDictCountries" Type="int" Nullable="false" />
           <Property Name="IdDictPositions" Type="int" Nullable="false" />
-          <Property Name="IdDictPositionsActual" Type="int" Nullable="false" />
+          <Property Name="Lp" Type="int" Nullable="false" />
           <Property Name="IdDictPersons" Type="int" Nullable="false" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -225,18 +225,6 @@
             </Principal>
             <Dependent Role="dictTeamsPlayers">
               <PropertyRef Name="IdDictPersons" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dictTeamsPlayers_dictPosition2">
-          <End Role="dictPositions" Type="Self.dictPositions" Multiplicity="1" />
-          <End Role="dictTeamsPlayers" Type="Self.dictTeamsPlayers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dictPositions">
-              <PropertyRef Name="IdDictPositions" />
-            </Principal>
-            <Dependent Role="dictTeamsPlayers">
-              <PropertyRef Name="IdDictPositionsActual" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,18 +324,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TeamsPlayer_dictPosition2">
-          <End Role="dictPositions" Type="Self.dictPositions" Multiplicity="1" />
-          <End Role="TeamsPlayer" Type="Self.TeamsPlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dictPositions">
-              <PropertyRef Name="IdDictPositions" />
-            </Principal>
-            <Dependent Role="TeamsPlayer">
-              <PropertyRef Name="IdDictPositionsActual" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TeamsPlayer_dictPositions1">
           <End Role="dictPositions" Type="Self.dictPositions" Multiplicity="1" />
           <End Role="TeamsPlayer" Type="Self.TeamsPlayer" Multiplicity="*" />
@@ -412,10 +388,6 @@
             <End Role="dictPersons" EntitySet="dictPersons" />
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
           </AssociationSet>
-          <AssociationSet Name="FK_dictTeamsPlayers_dictPosition2" Association="Self.FK_dictTeamsPlayers_dictPosition2">
-            <End Role="dictPositions" EntitySet="dictPositions" />
-            <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
-          </AssociationSet>
           <AssociationSet Name="FK_dictTeamsPlayers_dictPositions1" Association="Self.FK_dictTeamsPlayers_dictPositions1">
             <End Role="dictPositions" EntitySet="dictPositions" />
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
@@ -446,10 +418,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_TeamsPlayer_dictPersons" Association="Self.FK_TeamsPlayer_dictPersons">
             <End Role="dictPersons" EntitySet="dictPersons" />
-            <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeamsPlayer_dictPosition2" Association="Self.FK_TeamsPlayer_dictPosition2">
-            <End Role="dictPositions" EntitySet="dictPositions" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
           <AssociationSet Name="FK_TeamsPlayer_dictPositions1" Association="Self.FK_TeamsPlayer_dictPositions1">
@@ -521,17 +489,9 @@
             <End Role="dictPersons" EntitySet="dictPersons" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
-          <AssociationSet Name="FK_dictTeamsPlayers_dictPosition2" Association="SLMModel.FK_dictTeamsPlayers_dictPosition2">
-            <End Role="dictPositions" EntitySet="dictPositions" />
-            <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
-          </AssociationSet>
           <AssociationSet Name="FK_dictTeamsPlayers_dictPositions1" Association="SLMModel.FK_dictTeamsPlayers_dictPositions1">
             <End Role="dictPositions" EntitySet="dictPositions" />
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TeamsPlayer_dictPosition2" Association="SLMModel.FK_TeamsPlayer_dictPosition2">
-            <End Role="dictPositions" EntitySet="dictPositions" />
-            <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
           <AssociationSet Name="FK_TeamsPlayer_dictPositions1" Association="SLMModel.FK_TeamsPlayer_dictPositions1">
             <End Role="dictPositions" EntitySet="dictPositions" />
@@ -549,7 +509,7 @@
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="ErrorTableApp">
           <Key>
             <PropertyRef Name="IdAppErr" />
@@ -622,11 +582,9 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ShortName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_dictTeamsPlayers_dictPosition2" FromRole="dictPositions" ToRole="dictTeamsPlayers" />
-          <NavigationProperty Name="dictTeamsPlayers1" Relationship="SLMModel.FK_dictTeamsPlayers_dictPositions1" FromRole="dictPositions" ToRole="dictTeamsPlayers" />
-          <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_dictPosition2" FromRole="dictPositions" ToRole="TeamsPlayer" />
-          <NavigationProperty Name="TeamsPlayer1" Relationship="SLMModel.FK_TeamsPlayer_dictPositions1" FromRole="dictPositions" ToRole="TeamsPlayer" />
-        </EntityType>
+          <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_dictTeamsPlayers_dictPositions1" FromRole="dictPositions" ToRole="dictTeamsPlayers" />
+          <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_dictPositions1" FromRole="dictPositions" ToRole="TeamsPlayer" />
+          </EntityType>
         <EntityType Name="dictTeams">
           <Key>
             <PropertyRef Name="IdDictTeams" />
@@ -750,7 +708,7 @@
           <Property Name="IdDictTeams" Type="Int32" Nullable="false" />
           <Property Name="IdDictCountries" Type="Int32" Nullable="false" />
           <Property Name="IdDictPositions" Type="Int32" Nullable="false" />
-          <Property Name="IdDictPositionsActual" Type="Int32" Nullable="false" />
+          <Property Name="Lp" Type="Int32" Nullable="false" />
           <Property Name="IdDictPersons" Type="Int32" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -781,8 +739,7 @@
           <Property Name="Active" Type="Byte" Nullable="false" />
           <NavigationProperty Name="dictCountries" Relationship="SLMModel.FK_dictTeamsPlayers_dictCountries" FromRole="dictTeamsPlayers" ToRole="dictCountries" />
           <NavigationProperty Name="dictPersons" Relationship="SLMModel.FK_dictTeamsPlayers_dictPersons" FromRole="dictTeamsPlayers" ToRole="dictPersons" />
-          <NavigationProperty Name="dictPositions" Relationship="SLMModel.FK_dictTeamsPlayers_dictPosition2" FromRole="dictTeamsPlayers" ToRole="dictPositions" />
-          <NavigationProperty Name="dictPositions1" Relationship="SLMModel.FK_dictTeamsPlayers_dictPositions1" FromRole="dictTeamsPlayers" ToRole="dictPositions" />
+          <NavigationProperty Name="dictPositions" Relationship="SLMModel.FK_dictTeamsPlayers_dictPositions1" FromRole="dictTeamsPlayers" ToRole="dictPositions" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_dictTeamsPlayers_dictTeams" FromRole="dictTeamsPlayers" ToRole="dictTeams" />
           <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" FromRole="dictTeamsPlayers" ToRole="TeamsPlayer" />
         </EntityType>
@@ -795,7 +752,7 @@
           <Property Name="IdDictTeams" Type="Int32" Nullable="false" />
           <Property Name="IdDictCountries" Type="Int32" Nullable="false" />
           <Property Name="IdDictPositions" Type="Int32" Nullable="false" />
-          <Property Name="IdDictPositionsActual" Type="Int32" Nullable="false" />
+          <Property Name="Lp" Type="Int32" Nullable="false" />
           <Property Name="IdDictPersons" Type="Int32" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -826,8 +783,7 @@
           <Property Name="Active" Type="Byte" Nullable="false" />
           <NavigationProperty Name="dictCountries" Relationship="SLMModel.FK_TeamsPlayer_dictCountries" FromRole="TeamsPlayer" ToRole="dictCountries" />
           <NavigationProperty Name="dictPersons" Relationship="SLMModel.FK_TeamsPlayer_dictPersons" FromRole="TeamsPlayer" ToRole="dictPersons" />
-          <NavigationProperty Name="dictPositions" Relationship="SLMModel.FK_TeamsPlayer_dictPosition2" FromRole="TeamsPlayer" ToRole="dictPositions" />
-          <NavigationProperty Name="dictPositions1" Relationship="SLMModel.FK_TeamsPlayer_dictPositions1" FromRole="TeamsPlayer" ToRole="dictPositions" />
+          <NavigationProperty Name="dictPositions" Relationship="SLMModel.FK_TeamsPlayer_dictPositions1" FromRole="TeamsPlayer" ToRole="dictPositions" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_TeamsPlayer_dictTeams" FromRole="TeamsPlayer" ToRole="dictTeams" />
           <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" FromRole="TeamsPlayer" ToRole="dictTeamsPlayers" />
         </EntityType>
@@ -879,18 +835,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dictTeamsPlayers_dictPosition2">
-          <End Type="SLMModel.dictPositions" Role="dictPositions" Multiplicity="1" />
-          <End Type="SLMModel.dictTeamsPlayers" Role="dictTeamsPlayers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dictPositions">
-              <PropertyRef Name="IdDictPositions" />
-            </Principal>
-            <Dependent Role="dictTeamsPlayers">
-              <PropertyRef Name="IdDictPositionsActual" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dictTeamsPlayers_dictPositions1">
           <End Type="SLMModel.dictPositions" Role="dictPositions" Multiplicity="1" />
           <End Type="SLMModel.dictTeamsPlayers" Role="dictTeamsPlayers" Multiplicity="*" />
@@ -900,18 +844,6 @@
             </Principal>
             <Dependent Role="dictTeamsPlayers">
               <PropertyRef Name="IdDictPositions" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TeamsPlayer_dictPosition2">
-          <End Type="SLMModel.dictPositions" Role="dictPositions" Multiplicity="1" />
-          <End Type="SLMModel.TeamsPlayer" Role="TeamsPlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dictPositions">
-              <PropertyRef Name="IdDictPositions" />
-            </Principal>
-            <Dependent Role="TeamsPlayer">
-              <PropertyRef Name="IdDictPositionsActual" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -963,7 +895,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1107,7 +1039,7 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IdDictPersons" ColumnName="IdDictPersons" />
-                <ScalarProperty Name="IdDictPositionsActual" ColumnName="IdDictPositionsActual" />
+                <ScalarProperty Name="Lp" ColumnName="Lp" />
                 <ScalarProperty Name="IdDictPositions" ColumnName="IdDictPositions" />
                 <ScalarProperty Name="IdDictCountries" ColumnName="IdDictCountries" />
                 <ScalarProperty Name="IdDictTeams" ColumnName="IdDictTeams" />
@@ -1146,7 +1078,7 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IdDictPersons" ColumnName="IdDictPersons" />
-                <ScalarProperty Name="IdDictPositionsActual" ColumnName="IdDictPositionsActual" />
+                <ScalarProperty Name="Lp" ColumnName="Lp" />
                 <ScalarProperty Name="IdDictPositions" ColumnName="IdDictPositions" />
                 <ScalarProperty Name="IdDictCountries" ColumnName="IdDictCountries" />
                 <ScalarProperty Name="IdDictTeams" ColumnName="IdDictTeams" />

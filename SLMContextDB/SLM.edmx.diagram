@@ -20,15 +20,13 @@
         <AssociationConnector Association="SLMModel.FK_Teams_dictFormations" />
         <AssociationConnector Association="SLMModel.FK_Teams_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_Teams_Users" />
-        <EntityTypeShape EntityType="SLMModel.dictTeamsPlayers" Width="1.5" PointX="5.25" PointY="10.5" />
+        <EntityTypeShape EntityType="SLMModel.dictTeamsPlayers" Width="1.5" PointX="5.25" PointY="10.375" />
         <EntityTypeShape EntityType="SLMModel.TeamsPlayer" Width="1.5" PointX="7.5" PointY="10.375" />
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictCountries" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictCountries" />
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictPersons" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictPersons" />
-        <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictPosition2" />
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictPositions1" />
-        <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictPosition2" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictPositions1" />
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeams" />

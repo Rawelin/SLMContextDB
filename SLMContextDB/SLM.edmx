@@ -105,6 +105,17 @@
           <Property Name="TargetSite" Type="varchar(max)" />
           <Property Name="UserLogin" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="SinglePlayer">
+          <Key>
+            <PropertyRef Name="IdSinglePlayer" />
+          </Key>
+          <Property Name="IdSinglePlayer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdTeam" Type="int" Nullable="false" />
+          <Property Name="Season" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="int" Nullable="false" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -252,6 +263,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SinglePlayer_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="SinglePlayer" Type="Self.SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinglePlayer_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SinglePlayer" Type="Self.SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Teams_dictCountries">
           <End Role="dictCountries" Type="Self.dictCountries" Multiplicity="1" />
           <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
@@ -368,6 +403,7 @@
           <EntitySet Name="dictTeams" EntityType="Self.dictTeams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dictTeamsPlayers" EntityType="Self.dictTeamsPlayers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorTableApp" EntityType="Self.ErrorTableApp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinglePlayer" EntityType="Self.SinglePlayer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeamsPlayer" EntityType="Self.TeamsPlayer" Schema="dbo" store:Type="Tables" />
@@ -395,6 +431,14 @@
           <AssociationSet Name="FK_dictTeamsPlayers_dictTeams" Association="Self.FK_dictTeamsPlayers_dictTeams">
             <End Role="dictTeams" EntitySet="dictTeams" />
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinglePlayer_Teams" Association="Self.FK_SinglePlayer_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinglePlayer_Users" Association="Self.FK_SinglePlayer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
           </AssociationSet>
           <AssociationSet Name="FK_Teams_dictCountries" Association="Self.FK_Teams_dictCountries">
             <End Role="dictCountries" EntitySet="dictCountries" />
@@ -509,6 +553,15 @@
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
+          <EntitySet Name="SinglePlayer" EntityType="SLMModel.SinglePlayer" />
+          <AssociationSet Name="FK_SinglePlayer_Teams" Association="SLMModel.FK_SinglePlayer_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinglePlayer_Users" Association="SLMModel.FK_SinglePlayer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="ErrorTableApp">
           <Key>
@@ -539,6 +592,7 @@
           <Property Name="AccountActivated" Type="Byte" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_Users" FromRole="Users" ToRole="Teams" />
+          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="Users" ToRole="SinglePlayer" />
         </EntityType>
         <EntityType Name="dictCountries">
           <Key>
@@ -627,6 +681,7 @@
           <NavigationProperty Name="dictFormations" Relationship="SLMModel.FK_Teams_dictFormations" FromRole="Teams" ToRole="dictFormations" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="Teams" ToRole="dictTeams" />
           <NavigationProperty Name="Users" Relationship="SLMModel.FK_Teams_Users" FromRole="Teams" ToRole="Users" />
+          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Teams" FromRole="Teams" ToRole="SinglePlayer" />
         </EntityType>
         <Association Name="FK_dictTeams_dictCountries">
           <End Type="SLMModel.dictCountries" Role="dictCountries" Multiplicity="1" />
@@ -895,6 +950,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SinglePlayer">
+          <Key>
+            <PropertyRef Name="IdSinglePlayer" />
+          </Key>
+          <Property Name="IdSinglePlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdTeam" Type="Int32" Nullable="false" />
+          <Property Name="Season" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Teams" Relationship="SLMModel.FK_SinglePlayer_Teams" FromRole="SinglePlayer" ToRole="Teams" />
+          <NavigationProperty Name="Users" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="SinglePlayer" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_SinglePlayer_Teams">
+          <End Type="SLMModel.Teams" Role="Teams" Multiplicity="1" />
+          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="IdTeam" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinglePlayer_Users">
+          <End Type="SLMModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1084,6 +1176,18 @@
                 <ScalarProperty Name="IdDictTeams" ColumnName="IdDictTeams" />
                 <ScalarProperty Name="IdDictTeamsPlayers" ColumnName="IdDictTeamsPlayers" />
                 <ScalarProperty Name="IdTeamsPlayers" ColumnName="IdTeamsPlayers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinglePlayer">
+            <EntityTypeMapping TypeName="SLMModel.SinglePlayer">
+              <MappingFragment StoreEntitySet="SinglePlayer">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdSinglePlayer" ColumnName="IdSinglePlayer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

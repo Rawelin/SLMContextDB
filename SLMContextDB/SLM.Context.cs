@@ -36,5 +36,6 @@ namespace SLMContextDB
         public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<dictTeamsPlayers> dictTeamsPlayers { get; set; }
         public virtual DbSet<TeamsPlayer> TeamsPlayer { get; set; }
+        public virtual DbSet<SinglePlayer> SinglePlayer { get; set; }
     }
 }

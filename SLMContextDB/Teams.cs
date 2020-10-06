@@ -14,6 +14,12 @@ namespace SLMContextDB
     
     public partial class Teams
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Teams()
+        {
+            this.SinglePlayer = new HashSet<SinglePlayer>();
+        }
+    
         public int IdTeam { get; set; }
         public int IdDictTeams { get; set; }
         public int IdCountries { get; set; }
@@ -27,5 +33,7 @@ namespace SLMContextDB
         public virtual dictFormations dictFormations { get; set; }
         public virtual dictTeams dictTeams { get; set; }
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinglePlayer> SinglePlayer { get; set; }
     }
 }

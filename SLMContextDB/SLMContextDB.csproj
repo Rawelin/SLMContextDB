@@ -156,6 +156,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinglePlayer.cs">
+      <DependentUpon>SLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="SLM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

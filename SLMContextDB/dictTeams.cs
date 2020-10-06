@@ -28,6 +28,7 @@ namespace SLMContextDB
         public string Name { get; set; }
         public string City { get; set; }
         public byte Active { get; set; }
+        public Nullable<int> Pressing { get; set; }
     
         public virtual dictCountries dictCountries { get; set; }
         public virtual dictFormations dictFormations { get; set; }

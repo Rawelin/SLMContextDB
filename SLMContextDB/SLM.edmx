@@ -49,6 +49,7 @@
           <Property Name="IdDictFormations" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Pressing" Type="int" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="dictTeamsPlayers">
@@ -600,6 +601,7 @@
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="dictTeams" ToRole="Teams" />
           <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_dictTeamsPlayers_dictTeams" FromRole="dictTeams" ToRole="dictTeamsPlayers" />
           <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_dictTeams" FromRole="dictTeams" ToRole="TeamsPlayer" />
+          <Property Name="Pressing" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -974,6 +976,7 @@
           <EntitySetMapping Name="dictTeams">
             <EntityTypeMapping TypeName="SLMModel.dictTeams">
               <MappingFragment StoreEntitySet="dictTeams">
+                <ScalarProperty Name="Pressing" ColumnName="Pressing" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

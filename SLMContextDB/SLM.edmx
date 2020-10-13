@@ -50,6 +50,8 @@
           <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Pressing" Type="int" />
+          <Property Name="AttackLevel" Type="int" />
+          <Property Name="Aggression" Type="int" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="dictTeamsPlayers">
@@ -656,6 +658,8 @@
           <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_dictTeamsPlayers_dictTeams" FromRole="dictTeams" ToRole="dictTeamsPlayers" />
           <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_dictTeams" FromRole="dictTeams" ToRole="TeamsPlayer" />
           <Property Name="Pressing" Type="Int32" />
+          <Property Name="AttackLevel" Type="Int32" />
+          <Property Name="Aggression" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1068,6 +1072,8 @@
           <EntitySetMapping Name="dictTeams">
             <EntityTypeMapping TypeName="SLMModel.dictTeams">
               <MappingFragment StoreEntitySet="dictTeams">
+                <ScalarProperty Name="Aggression" ColumnName="Aggression" />
+                <ScalarProperty Name="AttackLevel" ColumnName="AttackLevel" />
                 <ScalarProperty Name="Pressing" ColumnName="Pressing" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="City" ColumnName="City" />

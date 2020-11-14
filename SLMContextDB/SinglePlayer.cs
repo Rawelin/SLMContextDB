@@ -21,7 +21,7 @@ namespace SLMContextDB
         public int StartDate { get; set; }
         public byte Active { get; set; }
     
-        public virtual Teams Teams { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Teams Teams { get; set; }
     }
 }

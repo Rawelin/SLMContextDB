@@ -12,25 +12,28 @@ namespace SLMContextDB
     using System;
     using System.Collections.Generic;
     
-    public partial class dictCountries
+    public partial class dictTeams
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public dictCountries()
+        public dictTeams()
         {
-            this.dictTeams = new HashSet<dictTeams>();
             this.dictTeamsPlayers = new HashSet<dictTeamsPlayers>();
             this.TeamsPlayer = new HashSet<TeamsPlayer>();
             this.Teams = new HashSet<Teams>();
         }
     
-        public int IdDictCountries { get; set; }
-        public string CountryName { get; set; }
-        public string AlphaCode2 { get; set; }
-        public string AlphaCode3 { get; set; }
-        public int NumericCode { get; set; }
+        public int IdDictTeams { get; set; }
+        public int IdCountries { get; set; }
+        public int IdDictFormations { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public byte Active { get; set; }
+        public Nullable<int> Pressing { get; set; }
+        public Nullable<int> AttackLevel { get; set; }
+        public Nullable<int> Aggression { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dictTeams> dictTeams { get; set; }
+        public virtual dictCountries dictCountries { get; set; }
+        public virtual dictFormations dictFormations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<dictTeamsPlayers> dictTeamsPlayers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

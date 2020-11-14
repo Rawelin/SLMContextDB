@@ -27,13 +27,23 @@ namespace SLMContextDB
         public int IdUser { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
+        public int Pressing { get; set; }
+        public int AttackLevel { get; set; }
+        public int Aggression { get; set; }
+        public Nullable<int> Played { get; set; }
+        public Nullable<int> Win { get; set; }
+        public Nullable<int> Draw { get; set; }
+        public Nullable<int> Lost { get; set; }
+        public Nullable<int> GoalsFor { get; set; }
+        public Nullable<int> GoalsAgainst { get; set; }
+        public Nullable<int> Points { get; set; }
         public byte Active { get; set; }
     
         public virtual dictCountries dictCountries { get; set; }
         public virtual dictFormations dictFormations { get; set; }
         public virtual dictTeams dictTeams { get; set; }
-        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SinglePlayer> SinglePlayer { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

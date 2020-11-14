@@ -13,13 +13,8 @@
         <EntityTypeShape EntityType="SLMModel.dictPositions" Width="1.5" PointX="3" PointY="16.875" />
         <EntityTypeShape EntityType="SLMModel.dictTeams" Width="1.5" PointX="3" PointY="10.125" />
         <EntityTypeShape EntityType="SLMModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SLMModel.Teams" Width="1.5" PointX="6" PointY="5.375" />
         <AssociationConnector Association="SLMModel.FK_dictTeams_dictCountries" />
-        <AssociationConnector Association="SLMModel.FK_Teams_dictCountries" />
         <AssociationConnector Association="SLMModel.FK_dictTeams_dictFormations" />
-        <AssociationConnector Association="SLMModel.FK_Teams_dictFormations" />
-        <AssociationConnector Association="SLMModel.FK_Teams_dictTeams" />
-        <AssociationConnector Association="SLMModel.FK_Teams_Users" />
         <EntityTypeShape EntityType="SLMModel.dictTeamsPlayers" Width="1.5" PointX="5.25" PointY="10.375" />
         <EntityTypeShape EntityType="SLMModel.TeamsPlayer" Width="1.5" PointX="7.5" PointY="10.375" />
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictCountries" />
@@ -31,9 +26,14 @@
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" />
-        <EntityTypeShape EntityType="SLMModel.SinglePlayer" Width="1.5" PointX="8.25" PointY="3.5" />
-        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Teams" />
+        <EntityTypeShape EntityType="SLMModel.SinglePlayer" Width="1.5" PointX="10.75" PointY="2" />
         <AssociationConnector Association="SLMModel.FK_SinglePlayer_Users" />
+        <EntityTypeShape EntityType="SLMModel.Teams" Width="1.5" PointX="5.625" PointY="3.625" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictCountries" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictFormations" />
+        <AssociationConnector Association="SLMModel.FK_Teams_dictTeams" />
+        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Teams" />
+        <AssociationConnector Association="SLMModel.FK_Teams_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

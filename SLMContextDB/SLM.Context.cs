@@ -33,9 +33,9 @@ namespace SLMContextDB
         public virtual DbSet<dictPositions> dictPositions { get; set; }
         public virtual DbSet<dictTeams> dictTeams { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<dictTeamsPlayers> dictTeamsPlayers { get; set; }
         public virtual DbSet<TeamsPlayer> TeamsPlayer { get; set; }
         public virtual DbSet<SinglePlayer> SinglePlayer { get; set; }
+        public virtual DbSet<Teams> Teams { get; set; }
     }
 }

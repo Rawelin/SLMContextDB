@@ -26,14 +26,14 @@
         <AssociationConnector Association="SLMModel.FK_dictTeamsPlayers_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" />
-        <EntityTypeShape EntityType="SLMModel.SinglePlayer" Width="1.5" PointX="10.75" PointY="2" />
-        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Users" />
         <EntityTypeShape EntityType="SLMModel.Teams" Width="1.5" PointX="5.625" PointY="3.625" />
         <AssociationConnector Association="SLMModel.FK_Teams_dictCountries" />
         <AssociationConnector Association="SLMModel.FK_Teams_dictFormations" />
         <AssociationConnector Association="SLMModel.FK_Teams_dictTeams" />
-        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Teams" />
         <AssociationConnector Association="SLMModel.FK_Teams_Users" />
+        <EntityTypeShape EntityType="SLMModel.SinglePlayer" Width="1.5" PointX="7.875" PointY="3.625" />
+        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Teams" />
+        <AssociationConnector Association="SLMModel.FK_SinglePlayer_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,6 +20,7 @@ namespace SLMContextDB
             this.dictTeamsPlayers = new HashSet<dictTeamsPlayers>();
             this.TeamsPlayer = new HashSet<TeamsPlayer>();
             this.Teams = new HashSet<Teams>();
+            this.SinglePlayer = new HashSet<SinglePlayer>();
         }
     
         public int IdDictTeams { get; set; }
@@ -40,5 +41,7 @@ namespace SLMContextDB
         public virtual ICollection<TeamsPlayer> TeamsPlayer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teams> Teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinglePlayer> SinglePlayer { get; set; }
     }
 }

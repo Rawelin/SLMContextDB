@@ -276,12 +276,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SinglePlayer_Teams">
-          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+        <Association Name="FK_SinglePlayer_dictTeams">
+          <End Role="dictTeams" Type="Self.dictTeams" Multiplicity="1" />
           <End Role="SinglePlayer" Type="Self.SinglePlayer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teams">
-              <PropertyRef Name="IdTeam" />
+            <Principal Role="dictTeams">
+              <PropertyRef Name="IdDictTeams" />
             </Principal>
             <Dependent Role="SinglePlayer">
               <PropertyRef Name="IdTeam" />
@@ -445,8 +445,8 @@
             <End Role="dictTeams" EntitySet="dictTeams" />
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
           </AssociationSet>
-          <AssociationSet Name="FK_SinglePlayer_Teams" Association="Self.FK_SinglePlayer_Teams">
-            <End Role="Teams" EntitySet="Teams" />
+          <AssociationSet Name="FK_SinglePlayer_dictTeams" Association="Self.FK_SinglePlayer_dictTeams">
+            <End Role="dictTeams" EntitySet="dictTeams" />
             <End Role="SinglePlayer" EntitySet="SinglePlayer" />
           </AssociationSet>
           <AssociationSet Name="FK_SinglePlayer_Users" Association="Self.FK_SinglePlayer_Users">
@@ -567,8 +567,8 @@
             <End Role="Teams" EntitySet="Teams" />
           </AssociationSet>
           <EntitySet Name="SinglePlayer" EntityType="SLMModel.SinglePlayer" />
-          <AssociationSet Name="FK_SinglePlayer_Teams" Association="SLMModel.FK_SinglePlayer_Teams">
-            <End Role="Teams" EntitySet="Teams" />
+          <AssociationSet Name="FK_SinglePlayer_dictTeams" Association="SLMModel.FK_SinglePlayer_dictTeams">
+            <End Role="dictTeams" EntitySet="dictTeams" />
             <End Role="SinglePlayer" EntitySet="SinglePlayer" />
           </AssociationSet>
           <AssociationSet Name="FK_SinglePlayer_Users" Association="SLMModel.FK_SinglePlayer_Users">
@@ -670,6 +670,7 @@
           <Property Name="AttackLevel" Type="Int32" />
           <Property Name="Aggression" Type="Int32" />
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="dictTeams" ToRole="Teams" />
+          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="dictTeams" ToRole="SinglePlayer" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -926,7 +927,6 @@
           <NavigationProperty Name="dictFormations" Relationship="SLMModel.FK_Teams_dictFormations" FromRole="Teams" ToRole="dictFormations" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="Teams" ToRole="dictTeams" />
           <NavigationProperty Name="Users" Relationship="SLMModel.FK_Teams_Users" FromRole="Teams" ToRole="Users" />
-          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Teams" FromRole="Teams" ToRole="SinglePlayer" />
         </EntityType>
         <Association Name="FK_Teams_dictCountries">
           <End Type="SLMModel.dictCountries" Role="dictCountries" Multiplicity="1" />
@@ -986,15 +986,15 @@
           <Property Name="Season" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Teams" Relationship="SLMModel.FK_SinglePlayer_Teams" FromRole="SinglePlayer" ToRole="Teams" />
+          <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="SinglePlayer" ToRole="dictTeams" />
           <NavigationProperty Name="Users" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="SinglePlayer" ToRole="Users" />
         </EntityType>
-        <Association Name="FK_SinglePlayer_Teams">
-          <End Type="SLMModel.Teams" Role="Teams" Multiplicity="1" />
+        <Association Name="FK_SinglePlayer_dictTeams">
+          <End Type="SLMModel.dictTeams" Role="dictTeams" Multiplicity="1" />
           <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teams">
-              <PropertyRef Name="IdTeam" />
+            <Principal Role="dictTeams">
+              <PropertyRef Name="IdDictTeams" />
             </Principal>
             <Dependent Role="SinglePlayer">
               <PropertyRef Name="IdTeam" />

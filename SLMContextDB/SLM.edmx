@@ -137,9 +137,19 @@
           <Property Name="IdDictTeams" Type="int" Nullable="false" />
           <Property Name="IdCountries" Type="int" Nullable="false" />
           <Property Name="IdDictFormations" Type="int" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Pressing" Type="int" Nullable="false" />
+          <Property Name="AttackLevel" Type="int" Nullable="false" />
+          <Property Name="Aggression" Type="int" Nullable="false" />
+          <Property Name="Played" Type="int" />
+          <Property Name="Win" Type="int" />
+          <Property Name="Draw" Type="int" />
+          <Property Name="Lost" Type="int" />
+          <Property Name="GoalsFor" Type="int" />
+          <Property Name="GoalsAgainst" Type="int" />
+          <Property Name="Points" Type="int" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="TeamsPlayer">
@@ -327,7 +337,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teams_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -679,7 +689,7 @@
           <Property Name="IdDictTeams" Type="Int32" Nullable="false" />
           <Property Name="IdCountries" Type="Int32" Nullable="false" />
           <Property Name="IdDictFormations" Type="Int32" Nullable="false" />
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
@@ -688,6 +698,16 @@
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="Teams" ToRole="dictTeams" />
           <NavigationProperty Name="Users" Relationship="SLMModel.FK_Teams_Users" FromRole="Teams" ToRole="Users" />
           <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Teams" FromRole="Teams" ToRole="SinglePlayer" />
+          <Property Name="Pressing" Type="Int32" Nullable="false" />
+          <Property Name="AttackLevel" Type="Int32" Nullable="false" />
+          <Property Name="Aggression" Type="Int32" Nullable="false" />
+          <Property Name="Played" Type="Int32" />
+          <Property Name="Win" Type="Int32" />
+          <Property Name="Draw" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+          <Property Name="GoalsFor" Type="Int32" />
+          <Property Name="GoalsAgainst" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
         </EntityType>
         <Association Name="FK_dictTeams_dictCountries">
           <End Type="SLMModel.dictCountries" Role="dictCountries" Multiplicity="1" />
@@ -1098,6 +1118,16 @@
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="SLMModel.Teams">
               <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="GoalsAgainst" ColumnName="GoalsAgainst" />
+                <ScalarProperty Name="GoalsFor" ColumnName="GoalsFor" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="Draw" ColumnName="Draw" />
+                <ScalarProperty Name="Win" ColumnName="Win" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
+                <ScalarProperty Name="Aggression" ColumnName="Aggression" />
+                <ScalarProperty Name="AttackLevel" ColumnName="AttackLevel" />
+                <ScalarProperty Name="Pressing" ColumnName="Pressing" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

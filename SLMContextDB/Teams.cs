@@ -25,8 +25,8 @@ namespace SLMContextDB
         public int AttackLevel { get; set; }
         public int Aggression { get; set; }
         public Nullable<int> Played { get; set; }
-        public Nullable<int> Win { get; set; }
-        public Nullable<int> Draw { get; set; }
+        public Nullable<int> Won { get; set; }
+        public Nullable<int> Drawn { get; set; }
         public Nullable<int> Lost { get; set; }
         public Nullable<int> GoalsFor { get; set; }
         public Nullable<int> GoalsAgainst { get; set; }

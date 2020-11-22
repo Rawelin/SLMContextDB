@@ -17,8 +17,8 @@ namespace SLMContextDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.SinglePlayer = new HashSet<SinglePlayer>();
             this.Teams = new HashSet<Teams>();
+            this.SinglePlayer = new HashSet<SinglePlayer>();
         }
     
         public int IdUser { get; set; }
@@ -31,8 +31,8 @@ namespace SLMContextDB
         public byte Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SinglePlayer> SinglePlayer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teams> Teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SinglePlayer> SinglePlayer { get; set; }
     }
 }

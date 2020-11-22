@@ -18,10 +18,10 @@ namespace SLMContextDB
         public int IdUser { get; set; }
         public int IdTeam { get; set; }
         public int Season { get; set; }
+        public int Week { get; set; }
+        public int Day { get; set; }
         public System.DateTime StartDate { get; set; }
         public byte Active { get; set; }
-        public int Week { get; set; }
-        public string Day { get; set; }
     
         public virtual dictTeams dictTeams { get; set; }
         public virtual Users Users { get; set; }

@@ -117,7 +117,7 @@
           <Property Name="IdTeam" Type="int" Nullable="false" />
           <Property Name="Season" Type="int" Nullable="false" />
           <Property Name="Week" Type="int" Nullable="false" />
-          <Property Name="Day" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Day" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -551,15 +551,6 @@
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
-          <EntitySet Name="SinglePlayer" EntityType="SLMModel.SinglePlayer" />
-          <AssociationSet Name="FK_SinglePlayer_dictTeams" Association="SLMModel.FK_SinglePlayer_dictTeams">
-            <End Role="dictTeams" EntitySet="dictTeams" />
-            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SinglePlayer_Users" Association="SLMModel.FK_SinglePlayer_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
-          </AssociationSet>
           <EntitySet Name="Teams" EntityType="SLMModel.Teams" />
           <AssociationSet Name="FK_Teams_dictCountries" Association="SLMModel.FK_Teams_dictCountries">
             <End Role="dictCountries" EntitySet="dictCountries" />
@@ -576,6 +567,15 @@
           <AssociationSet Name="FK_Teams_Users" Association="SLMModel.FK_Teams_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <EntitySet Name="SinglePlayer" EntityType="SLMModel.SinglePlayer" />
+          <AssociationSet Name="FK_SinglePlayer_dictTeams" Association="SLMModel.FK_SinglePlayer_dictTeams">
+            <End Role="dictTeams" EntitySet="dictTeams" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SinglePlayer_Users" Association="SLMModel.FK_SinglePlayer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SinglePlayer" EntitySet="SinglePlayer" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="ErrorTableApp">
@@ -606,8 +606,8 @@
           <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
           <Property Name="AccountActivated" Type="Byte" Nullable="false" />
           <Property Name="Active" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="Users" ToRole="SinglePlayer" />
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_Users" FromRole="Users" ToRole="Teams" />
+          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="Users" ToRole="SinglePlayer" />
         </EntityType>
         <EntityType Name="dictCountries">
           <Key>
@@ -671,8 +671,8 @@
           <Property Name="Pressing" Type="Int32" />
           <Property Name="AttackLevel" Type="Int32" />
           <Property Name="Aggression" Type="Int32" />
-          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="dictTeams" ToRole="SinglePlayer" />
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_dictTeams" FromRole="dictTeams" ToRole="Teams" />
+          <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="dictTeams" ToRole="SinglePlayer" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -903,45 +903,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SinglePlayer">
-          <Key>
-            <PropertyRef Name="IdSinglePlayer" />
-          </Key>
-          <Property Name="IdSinglePlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="IdTeam" Type="Int32" Nullable="false" />
-          <Property Name="Season" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Active" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="SinglePlayer" ToRole="dictTeams" />
-          <NavigationProperty Name="Users" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="SinglePlayer" ToRole="Users" />
-          <Property Name="Week" Type="Int32" Nullable="false" />
-          <Property Name="Day" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_SinglePlayer_dictTeams">
-          <End Type="SLMModel.dictTeams" Role="dictTeams" Multiplicity="1" />
-          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dictTeams">
-              <PropertyRef Name="IdDictTeams" />
-            </Principal>
-            <Dependent Role="SinglePlayer">
-              <PropertyRef Name="IdTeam" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SinglePlayer_Users">
-          <End Type="SLMModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="SinglePlayer">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Teams">
           <Key>
             <PropertyRef Name="IdTeam" />
@@ -1013,6 +974,45 @@
               <PropertyRef Name="IdUser" />
             </Principal>
             <Dependent Role="Teams">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SinglePlayer">
+          <Key>
+            <PropertyRef Name="IdSinglePlayer" />
+          </Key>
+          <Property Name="IdSinglePlayer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdTeam" Type="Int32" Nullable="false" />
+          <Property Name="Season" Type="Int32" Nullable="false" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="SinglePlayer" ToRole="dictTeams" />
+          <NavigationProperty Name="Users" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="SinglePlayer" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_SinglePlayer_dictTeams">
+          <End Type="SLMModel.dictTeams" Role="dictTeams" Multiplicity="1" />
+          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dictTeams">
+              <PropertyRef Name="IdDictTeams" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
+              <PropertyRef Name="IdTeam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SinglePlayer_Users">
+          <End Type="SLMModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="SLMModel.SinglePlayer" Role="SinglePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="SinglePlayer">
               <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
@@ -1198,20 +1198,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SinglePlayer">
-            <EntityTypeMapping TypeName="SLMModel.SinglePlayer">
-              <MappingFragment StoreEntitySet="SinglePlayer">
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="Week" ColumnName="Week" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Season" ColumnName="Season" />
-                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdSinglePlayer" ColumnName="IdSinglePlayer" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="SLMModel.Teams">
               <MappingFragment StoreEntitySet="Teams">
@@ -1233,6 +1219,20 @@
                 <ScalarProperty Name="IdCountries" ColumnName="IdCountries" />
                 <ScalarProperty Name="IdDictTeams" ColumnName="IdDictTeams" />
                 <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinglePlayer">
+            <EntityTypeMapping TypeName="SLMModel.SinglePlayer">
+              <MappingFragment StoreEntitySet="SinglePlayer">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdSinglePlayer" ColumnName="IdSinglePlayer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

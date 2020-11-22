@@ -116,6 +116,8 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdTeam" Type="int" Nullable="false" />
           <Property Name="Season" Type="int" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
+          <Property Name="Day" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -913,6 +915,8 @@
           <Property Name="Active" Type="Byte" Nullable="false" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_SinglePlayer_dictTeams" FromRole="SinglePlayer" ToRole="dictTeams" />
           <NavigationProperty Name="Users" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="SinglePlayer" ToRole="Users" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_SinglePlayer_dictTeams">
           <End Type="SLMModel.dictTeams" Role="dictTeams" Multiplicity="1" />
@@ -1197,6 +1201,8 @@
           <EntitySetMapping Name="SinglePlayer">
             <EntityTypeMapping TypeName="SLMModel.SinglePlayer">
               <MappingFragment StoreEntitySet="SinglePlayer">
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Season" ColumnName="Season" />

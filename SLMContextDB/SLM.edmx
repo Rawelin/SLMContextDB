@@ -159,6 +159,7 @@
             <PropertyRef Name="IdTeamsPlayers" />
           </Key>
           <Property Name="IdTeamsPlayers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdDictTeamsPlayers" Type="int" Nullable="false" />
           <Property Name="IdDictTeams" Type="int" Nullable="false" />
           <Property Name="IdDictCountries" Type="int" Nullable="false" />
@@ -410,6 +411,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TeamsPlayer_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TeamsPlayer" Type="Self.TeamsPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="TeamsPlayer">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SLMModelStoreContainer">
           <EntitySet Name="dictCountries" EntityType="Self.dictCountries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dictFormations" EntityType="Self.dictFormations" Schema="dbo" store:Type="Tables" />
@@ -489,6 +502,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_TeamsPlayer_dictTeamsPlayer" Association="Self.FK_TeamsPlayer_dictTeamsPlayer">
             <End Role="dictTeamsPlayers" EntitySet="dictTeamsPlayers" />
+            <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamsPlayer_Users" Association="Self.FK_TeamsPlayer_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
         </EntityContainer>
@@ -577,6 +594,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="SinglePlayer" EntitySet="SinglePlayer" />
           </AssociationSet>
+          <AssociationSet Name="FK_TeamsPlayer_Users" Association="SLMModel.FK_TeamsPlayer_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="ErrorTableApp">
           <Key>
@@ -608,6 +629,7 @@
           <Property Name="Active" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Teams" Relationship="SLMModel.FK_Teams_Users" FromRole="Users" ToRole="Teams" />
           <NavigationProperty Name="SinglePlayer" Relationship="SLMModel.FK_SinglePlayer_Users" FromRole="Users" ToRole="SinglePlayer" />
+          <NavigationProperty Name="TeamsPlayer" Relationship="SLMModel.FK_TeamsPlayer_Users" FromRole="Users" ToRole="TeamsPlayer" />
         </EntityType>
         <EntityType Name="dictCountries">
           <Key>
@@ -794,6 +816,8 @@
           <NavigationProperty Name="dictPositions" Relationship="SLMModel.FK_TeamsPlayer_dictPositions1" FromRole="TeamsPlayer" ToRole="dictPositions" />
           <NavigationProperty Name="dictTeams" Relationship="SLMModel.FK_TeamsPlayer_dictTeams" FromRole="TeamsPlayer" ToRole="dictTeams" />
           <NavigationProperty Name="dictTeamsPlayers" Relationship="SLMModel.FK_TeamsPlayer_dictTeamsPlayer" FromRole="TeamsPlayer" ToRole="dictTeamsPlayers" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="SLMModel.FK_TeamsPlayer_Users" FromRole="TeamsPlayer" ToRole="Users" />
         </EntityType>
         <Association Name="FK_dictTeamsPlayers_dictCountries">
           <End Type="SLMModel.dictCountries" Role="dictCountries" Multiplicity="1" />
@@ -1017,6 +1041,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TeamsPlayer_Users">
+          <End Type="SLMModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="SLMModel.TeamsPlayer" Role="TeamsPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="TeamsPlayer">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1161,6 +1197,7 @@
           <EntitySetMapping Name="TeamsPlayer">
             <EntityTypeMapping TypeName="SLMModel.TeamsPlayer">
               <MappingFragment StoreEntitySet="TeamsPlayer">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="AverageDynamicSkills" ColumnName="AverageDynamicSkills" />
                 <ScalarProperty Name="AverageSkills" ColumnName="AverageSkills" />

@@ -48,11 +48,13 @@ namespace SLMContextDB
         public decimal AverageSkills { get; set; }
         public decimal AverageDynamicSkills { get; set; }
         public byte Active { get; set; }
+        public int IdUser { get; set; }
     
         public virtual dictCountries dictCountries { get; set; }
         public virtual dictPersons dictPersons { get; set; }
         public virtual dictPositions dictPositions { get; set; }
         public virtual dictTeams dictTeams { get; set; }
         public virtual dictTeamsPlayers dictTeamsPlayers { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

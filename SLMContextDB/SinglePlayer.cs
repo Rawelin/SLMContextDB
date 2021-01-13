@@ -22,6 +22,8 @@ namespace SLMContextDB
         public int Day { get; set; }
         public System.DateTime StartDate { get; set; }
         public byte Active { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
     
         public virtual dictTeams dictTeams { get; set; }
         public virtual Users Users { get; set; }

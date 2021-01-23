@@ -124,6 +124,19 @@
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="StartParameters">
+          <Key>
+            <PropertyRef Name="IdStartParameters" />
+          </Key>
+          <Property Name="IdStartParameters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeasonNumber" Type="int" Nullable="false" />
+          <Property Name="YearStart" Type="int" Nullable="false" />
+          <Property Name="MonthStart" Type="int" Nullable="false" />
+          <Property Name="WeekStart" Type="int" Nullable="false" />
+          <Property Name="DayStart" Type="int" Nullable="false" />
+          <Property Name="FirstMatchDayStart" Type="int" Nullable="false" />
+          <Property Name="NumberOfRestDays" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -435,6 +448,7 @@
           <EntitySet Name="dictTeamsPlayers" EntityType="Self.dictTeamsPlayers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorTableApp" EntityType="Self.ErrorTableApp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinglePlayer" EntityType="Self.SinglePlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StartParameters" EntityType="Self.StartParameters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeamsPlayer" EntityType="Self.TeamsPlayer" Schema="dbo" store:Type="Tables" />
@@ -601,6 +615,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="TeamsPlayer" EntitySet="TeamsPlayer" />
           </AssociationSet>
+          <EntitySet Name="StartParameters" EntityType="SLMModel.StartParameters" />
           </EntityContainer>
         <EntityType Name="ErrorTableApp">
           <Key>
@@ -1059,6 +1074,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StartParameters">
+          <Key>
+            <PropertyRef Name="IdStartParameters" />
+          </Key>
+          <Property Name="IdStartParameters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeasonNumber" Type="Int32" Nullable="false" />
+          <Property Name="YearStart" Type="Int32" Nullable="false" />
+          <Property Name="MonthStart" Type="Int32" Nullable="false" />
+          <Property Name="WeekStart" Type="Int32" Nullable="false" />
+          <Property Name="DayStart" Type="Int32" Nullable="false" />
+          <Property Name="FirstMatchDayStart" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfRestDays" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1279,6 +1307,20 @@
                 <ScalarProperty Name="IdTeam" ColumnName="IdTeam" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdSinglePlayer" ColumnName="IdSinglePlayer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StartParameters">
+            <EntityTypeMapping TypeName="SLMModel.StartParameters">
+              <MappingFragment StoreEntitySet="StartParameters">
+                <ScalarProperty Name="NumberOfRestDays" ColumnName="NumberOfRestDays" />
+                <ScalarProperty Name="FirstMatchDayStart" ColumnName="FirstMatchDayStart" />
+                <ScalarProperty Name="DayStart" ColumnName="DayStart" />
+                <ScalarProperty Name="WeekStart" ColumnName="WeekStart" />
+                <ScalarProperty Name="MonthStart" ColumnName="MonthStart" />
+                <ScalarProperty Name="YearStart" ColumnName="YearStart" />
+                <ScalarProperty Name="SeasonNumber" ColumnName="SeasonNumber" />
+                <ScalarProperty Name="IdStartParameters" ColumnName="IdStartParameters" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

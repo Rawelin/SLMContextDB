@@ -35,6 +35,7 @@
         <AssociationConnector Association="SLMModel.FK_SinglePlayer_dictTeams" />
         <AssociationConnector Association="SLMModel.FK_SinglePlayer_Users" />
         <AssociationConnector Association="SLMModel.FK_TeamsPlayer_Users" />
+        <EntityTypeShape EntityType="SLMModel.StartParameters" Width="1.5" PointX="8.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -37,5 +37,6 @@ namespace SLMContextDB
         public virtual DbSet<TeamsPlayer> TeamsPlayer { get; set; }
         public virtual DbSet<Teams> Teams { get; set; }
         public virtual DbSet<SinglePlayer> SinglePlayer { get; set; }
+        public virtual DbSet<StartParameters> StartParameters { get; set; }
     }
 }

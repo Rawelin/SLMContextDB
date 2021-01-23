@@ -121,6 +121,7 @@
           <Property Name="Week" Type="int" Nullable="false" />
           <Property Name="Day" Type="int" Nullable="false" />
           <Property Name="FirstMatchDay" Type="int" Nullable="false" />
+          <Property Name="NumberOfRestDays" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -1037,6 +1038,7 @@
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Month" Type="Int32" Nullable="false" />
           <Property Name="FirstMatchDay" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfRestDays" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_SinglePlayer_dictTeams">
           <End Type="SLMModel.dictTeams" Role="dictTeams" Multiplicity="1" />
@@ -1296,6 +1298,7 @@
           <EntitySetMapping Name="SinglePlayer">
             <EntityTypeMapping TypeName="SLMModel.SinglePlayer">
               <MappingFragment StoreEntitySet="SinglePlayer">
+                <ScalarProperty Name="NumberOfRestDays" ColumnName="NumberOfRestDays" />
                 <ScalarProperty Name="FirstMatchDay" ColumnName="FirstMatchDay" />
                 <ScalarProperty Name="Month" ColumnName="Month" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
